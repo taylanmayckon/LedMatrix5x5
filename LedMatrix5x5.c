@@ -4,7 +4,7 @@
 #include "pico/bootrom.h"
 #include "hardware/clocks.h"
 #include "matriz-led.pio.h"
-#include "libs\teclado_matricial\teclado_matricial.h"
+#include "libs/teclado_matricial/teclado_matricial.h"
 
 // número de LEDs
 #define NUM_PIXELS 25
