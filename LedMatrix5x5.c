@@ -11,37 +11,33 @@
 // pino de saída
 #define OUT_PIN 7
 
-double frame1[25] = {0.0, 0.0, 0.0, 0.0, 0.0,
-                     0.0, 0.0, 0.0, 0.0, 0.0,
-                     0.0, 0.0, 0.0, 0.0, 0.0,
-                     0.0, 0.0, 0.0, 0.0, 0.0,
-                     0.0, 0.0, 0.1, 0.0, 0.0};
-
-double frame2[25] = {0.0, 0.0, 0.0, 0.0, 0.0,
-                     0.0, 0.0, 0.0, 0.0, 0.0,
-                     0.0, 0.0, 0.0, 0.0, 0.0,
-                     0.0, 0.1, 0.0, 0.1, 0.0,
-                     0.0, 0.0, 0.1, 0.0, 0.0};
-
-double frame3[25] = {0.0, 0.0, 0.0, 0.0, 0.0,
-                     0.0, 0.0, 0.0, 0.0, 0.0,
-                     0.1, 0.0, 0.0, 0.0, 0.1,
-                     0.0, 0.1, 0.0, 0.1, 0.0,
-                     0.0, 0.0, 0.1, 0.0, 0.0};
-
-double frame4[25] = {0.0, 0.0, 0.0, 0.0, 0.0,
-                     0.1, 0.0, 0.1, 0.0, 0.1,
-                     0.1, 0.0, 0.0, 0.0, 0.1,
-                     0.0, 0.1, 0.0, 0.1, 0.0,
-                     0.0, 0.0, 0.1, 0.0, 0.0};
-
-double frame5[25] = {0.0, 0.1, 0.0, 0.1, 0.0,
-                     0.1, 0.0, 0.1, 0.0, 0.1,
-                     0.1, 0.0, 0.0, 0.0, 0.1,
-                     0.0, 0.1, 0.0, 0.1, 0.0,
-                     0.0, 0.0, 0.1, 0.0, 0.0};
-
-double off[25] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+double leds[25] = {
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+};
 
 uint32_t matrix_rgb(double b, double r, double g)
 {
@@ -53,12 +49,12 @@ uint32_t matrix_rgb(double b, double r, double g)
 }
 
 // rotina para acionar a matrix de leds - ws2812b
-void desenho_pio(double *desenho, uint32_t valor_led, PIO pio, uint sm, double r, double g, double b)
+void leds_pio(double *leds, uint32_t valor_led, PIO pio, uint sm, double r, double g, double b)
 {
 
     for (int16_t i = 0; i < NUM_PIXELS; i++)
     {
-        valor_led = matrix_rgb(b = 0.0, desenho[24 - i], g = 0.0);
+        valor_led = matrix_rgb(leds[24 - i], r = 0.0, g = 0.0);
         pio_sm_put_blocking(pio, sm, valor_led);
     }
 }
@@ -81,20 +77,9 @@ int main()
 
     while (true)
     {
-        if (detect_button() == '1')
+        if (detect_button() == 'B')
         {
-            desenho_pio(frame1, valor_led, pio, sm, r, g, b);
-            sleep_ms(500);
-            desenho_pio(frame2, valor_led, pio, sm, r, g, b);
-            sleep_ms(500);
-            desenho_pio(frame3, valor_led, pio, sm, r, g, b);
-            sleep_ms(500);
-            desenho_pio(frame4, valor_led, pio, sm, r, g, b);
-            sleep_ms(500);
-            desenho_pio(frame5, valor_led, pio, sm, r, g, b);
-            sleep_ms(500);
-            desenho_pio(off, valor_led, pio, sm, r, g, b);
-            sleep_ms(500);
+            leds_pio(leds, valor_led, pio, sm, r, g, b);
         }
     }
 }
