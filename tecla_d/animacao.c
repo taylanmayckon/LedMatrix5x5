@@ -72,19 +72,19 @@ double desenho8[25] =   {0.5, 0.5, 0.5, 0.5, 0.5,
                         0.5, 0.5, 0.5, 0.5, 0.5};
 
 //imprimir valor binário
-void imprimir_binario(int num) {
- int i;
- for (i = 31; i >= 0; i--) {
-  (num & (1 << i)) ? printf("1") : printf("0");
- }
-}
+// void imprimir_binario(int num) {
+//  int i;
+//  for (i = 31; i >= 0; i--) {
+//   (num & (1 << i)) ? printf("1") : printf("0");
+//  }
+// }
 
 //rotina da interrupção
-static void gpio_irq_handler(uint gpio, uint32_t events){
-    printf("Interrupção ocorreu no pino %d, no evento %d\n", gpio, events);
-    printf("HABILITANDO O MODO GRAVAÇÃO");
-	reset_usb_boot(0,0); //habilita o modo de gravação do microcontrolador
-}
+// static void gpio_irq_handler(uint gpio, uint32_t events){
+//     printf("Interrupção ocorreu no pino %d, no evento %d\n", gpio, events);
+//     printf("HABILITANDO O MODO GRAVAÇÃO");
+// 	reset_usb_boot(0,0); //habilita o modo de gravação do microcontrolador
+// }
 
 //rotina para definição da intensidade de cores do led
 uint32_t matrix_rgb(double b, double r, double g)
@@ -119,31 +119,31 @@ void desenho_pio(double *desenho, uint32_t valor_led, PIO pio, uint sm, double r
         valor_led = matrix_rgb(b=0.0, r=0.0, desenho[24-i]);
         pio_sm_put_blocking(pio, sm, valor_led);
     }
-    imprimir_binario(valor_led);
+    // imprimir_binario(valor_led);
 }
 
 //função principal
-void main_animacao(bool tecla_d)
+void main_animacao(bool tecla_d, PIO pio, uint sm)
 {
-    PIO pio = pio0; 
-    bool ok;
-    uint16_t i;
+    // PIO pio = pio0; 
+    // bool ok;
+    // uint16_t i;
     uint32_t valor_led;
     double r = 0.0, b = 0.0 , g = 0.0;
 
-    //coloca a frequência de clock para 128 MHz, facilitando a divisão pelo clock
-    ok = set_sys_clock_khz(128000, false);
+    // //coloca a frequência de clock para 128 MHz, facilitando a divisão pelo clock
+    // ok = set_sys_clock_khz(128000, false);
 
-    // Inicializa todos os códigos stdio padrão que estão ligados ao binário.
-    stdio_init_all();
+    // // Inicializa todos os códigos stdio padrão que estão ligados ao binário.
+    // stdio_init_all();
 
-    printf("iniciando a transmissão PIO");
-    if (ok) printf("clock set to %ld\n", clock_get_hz(clk_sys));
+    // printf("iniciando a transmissão PIO");
+    // if (ok) printf("clock set to %ld\n", clock_get_hz(clk_sys));
 
-    //configurações da PIO
-    uint offset = pio_add_program(pio, &pio_matrix_program);
-    uint sm = pio_claim_unused_sm(pio, true);
-    pio_matrix_program_init(pio, sm, offset, OUT_PIN);
+    // //configurações da PIO
+    // uint offset = pio_add_program(pio, &pio_matrix_program);
+    // uint sm = pio_claim_unused_sm(pio, true);
+    // pio_matrix_program_init(pio, sm, offset, OUT_PIN);
 
     if (tecla_d==true) 
     {
