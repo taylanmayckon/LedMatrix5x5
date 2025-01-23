@@ -148,69 +148,36 @@ void main_animacao(bool tecla_d)
     if (tecla_d==true) 
     {
         desenho_pio(desenho8, valor_led, pio, sm, r, g, b);
-        return;
     }
-
-    // //inicializar o botão de interrupção - GPIO5
-    // gpio_init(button_0);
-    // gpio_set_dir(button_0, GPIO_IN);
-    // gpio_pull_up(button_0);
-
-    // //inicializar o botão de interrupção - GPIO5
-    // gpio_init(button_1);
-    // gpio_set_dir(button_1, GPIO_IN);
-    // gpio_pull_up(button_1);
-
-    // //interrupção da gpio habilitada
-    // gpio_set_irq_enabled_with_callback(button_0, GPIO_IRQ_EDGE_FALL, 1, & gpio_irq_handler);
-
-    // while (true) {
-    
-    // if(gpio_get(button_1)) //botão em nível alto
-    // {
-    //     //rotina para escrever na matriz de leds com o emprego de PIO - desenho 2
-    //     desenho_pio(desenho, valor_led, pio, sm, r, g, b);
-    // }
-    // else
-    // {
-    //     //rotina para escrever na matriz de leds com o emprego de PIO - desenho 1
-    //     desenho_pio(desenho2, valor_led, pio, sm, r, g, b);
-    // }
-
-    // sleep_ms(500);
-    // printf("\nfrequeência de clock %ld\r\n", clock_get_hz(clk_sys));
-    // }
-
+    else
+    {
     for (int16_t i = 0; i < 7; i++) {
-        if (i==0)
-        {
-            desenho_pio(desenho1, valor_led, pio, sm, r, g, b);
+        switch (i) {
+            case 0:
+                desenho_pio(desenho1, valor_led, pio, sm, r, g, b);
+                break;
+            case 1:
+                desenho_pio(desenho2, valor_led, pio, sm, r, g, b);
+                break;
+            case 2:
+                desenho_pio(desenho3, valor_led, pio, sm, r, g, b);
+                break;
+            case 3:
+                desenho_pio(desenho4, valor_led, pio, sm, r, g, b);
+                break;
+            case 4:
+                desenho_pio(desenho5, valor_led, pio, sm, r, g, b);
+                break;
+            case 5:
+                desenho_pio(desenho6, valor_led, pio, sm, r, g, b);
+                break;
+            default:
+                desenho_pio(desenho7, valor_led, pio, sm, r, g, b);
+                break;
         }
-        else if (i==1)
-        {
-            desenho_pio(desenho2, valor_led, pio, sm, r, g, b);
-        }
-        else if (i==2)
-        {
-            desenho_pio(desenho3, valor_led, pio, sm, r, g, b);
-        }
-        else if (i==3)
-        {
-            desenho_pio(desenho4, valor_led, pio, sm, r, g, b);
-        }
-        else if (i==4)
-        {
-            desenho_pio(desenho5, valor_led, pio, sm, r, g, b);
-        }
-        else if (i==5)
-        {
-            desenho_pio(desenho6, valor_led, pio, sm, r, g, b);
-        }
-        else 
-        {
-            desenho_pio(desenho7, valor_led, pio, sm, r, g, b);
-        }
+
         sleep_ms(500);
+    }
     }
     
 }

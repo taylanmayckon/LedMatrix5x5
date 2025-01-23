@@ -23,6 +23,6 @@ int main()
             main_animacao(true);
         }
 
-        sleep_ms(50); // Delay para evitar múltiplas leituras rápidas
+        sleep_ms(100); // Delay para evitar múltiplas leituras rápidas
     }
 }
