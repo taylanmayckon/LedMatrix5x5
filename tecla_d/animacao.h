@@ -31,6 +31,6 @@ uint32_t matrix_rgb(double b, double r, double g);
 void desenho_pio(double *desenho, uint32_t valor_led, PIO pio, uint sm, double r, double g, double b);
 
 // Main loop to monitor keypad and run animations
-void main_animacao();
+void main_animacao(bool tecla_d);
 
 #endif // LED_ANIMATION_H

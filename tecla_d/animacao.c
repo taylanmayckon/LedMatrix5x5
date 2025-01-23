@@ -65,6 +65,12 @@ double desenho7[25] =   {0.0, 0.0, 0.0, 0.0, 0.0,
                         0.0, 0.0, 0.0, 0.0, 0.0,
                         0.0, 0.0, 0.0, 0.0, 0.0};
 
+double desenho8[25] =   {0.5, 0.5, 0.5, 0.5, 0.5,
+                        0.5, 0.5, 0.5, 0.5, 0.5, 
+                        0.5, 0.5, 0.5, 0.5, 0.5,
+                        0.5, 0.5, 0.5, 0.5, 0.5,
+                        0.5, 0.5, 0.5, 0.5, 0.5};
+
 //imprimir valor binário
 void imprimir_binario(int num) {
  int i;
@@ -110,14 +116,14 @@ uint32_t matrix_rgb(double b, double r, double g)
 void desenho_pio(double *desenho, uint32_t valor_led, PIO pio, uint sm, double r, double g, double b){
 
     for (int16_t i = 0; i < NUM_PIXELS; i++) {
-        valor_led = matrix_rgb(desenho[24-i], r=0.0, g=0.0);
+        valor_led = matrix_rgb(b=0.0, r=0.0, desenho[24-i]);
         pio_sm_put_blocking(pio, sm, valor_led);
     }
     imprimir_binario(valor_led);
 }
 
 //função principal
-void main_animacao()
+void main_animacao(bool tecla_d)
 {
     PIO pio = pio0; 
     bool ok;
@@ -138,6 +144,12 @@ void main_animacao()
     uint offset = pio_add_program(pio, &pio_matrix_program);
     uint sm = pio_claim_unused_sm(pio, true);
     pio_matrix_program_init(pio, sm, offset, OUT_PIN);
+
+    if (tecla_d==true) 
+    {
+        desenho_pio(desenho8, valor_led, pio, sm, r, g, b);
+        return;
+    }
 
     // //inicializar o botão de interrupção - GPIO5
     // gpio_init(button_0);

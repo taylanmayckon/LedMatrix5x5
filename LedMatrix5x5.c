@@ -15,8 +15,12 @@ int main()
         char tecla = detect_button(); // Armazena a tecla detectada
         printf("Tecla pressionada: %c\n", tecla);
 
-        if (tecla == 'D' || tecla == '4') {
-            main_animacao(); // Aciona o buzzer
+        if (tecla == '4') {
+            main_animacao(false); // Aciona o buzzer
+        }
+        else if (tecla == 'D') 
+        {
+            main_animacao(true);
         }
 
         sleep_ms(50); // Delay para evitar múltiplas leituras rápidas
