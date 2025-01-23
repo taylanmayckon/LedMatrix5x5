@@ -1,0 +1,4 @@
+[wokwi]
+version = 1
+firmware = 'build/LedMatrix5x5.uf2'
+elf = 'build/LedMatrix5x5.elf'
