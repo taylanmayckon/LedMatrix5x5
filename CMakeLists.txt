@@ -35,7 +35,8 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(LedMatrix5x5 LedMatrix5x5.c )
+add_executable(LedMatrix5x5 LedMatrix5x5.c 
+${CMAKE_CURRENT_LIST_DIR}/libs/teclado_matricial/teclado_matricial.c)
 
 pico_set_program_name(LedMatrix5x5 "LedMatrix5x5")
 pico_set_program_version(LedMatrix5x5 "0.1")
@@ -51,6 +52,7 @@ target_link_libraries(LedMatrix5x5
 # Add the standard include files to the build
 target_include_directories(LedMatrix5x5 PRIVATE
   ${CMAKE_CURRENT_LIST_DIR}
+  ${CMAKE_CURRENT_LIST_DIR}/libs/teclado_matricial
 )
 
 # Add any user requested libraries
