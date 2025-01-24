@@ -1,5 +1,5 @@
-#ifndef TECLA_#_H
-#define TECLA_#_H
+#ifndef TECLA_JOGO_VELHA_H
+#define TECLA_JOGO_VELHA_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,4 +19,4 @@ void animacao_pio(double *animacao, uint32_t iRgb_led, PIO pio, uint sm, double 
 // Main loop to monitor keypad and run animations
 void gera_animacao(char tecla, PIO pio, uint sm);
 
-#endif // TECLA_#_H
+#endif // TECLA_JOGO_VELHA_H

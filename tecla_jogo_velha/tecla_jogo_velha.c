@@ -1,4 +1,3 @@
-// led_animation.c
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -42,8 +41,7 @@ double animacoes[5][NUM_LEDS] = {
      0.0, 1.0, 0.0, 1.0, 0.0, 
      0.0, 0.0, 1.0, 0.0, 0.0,
      0.0, 1.0, 0.0, 1.0, 0.0,
-     1.0, 0.0, 0.0, 0.0, 1.0}
-}
+     1.0, 0.0, 0.0, 0.0, 1.0}};
 
 // Inicializa vetor para apagar acender todos os leds com nível de intensidade de 20% da luminosidade máxima
 double animacao_20[NUM_LEDS] = {0.2, 0.2, 0.2, 0.2, 0.2,

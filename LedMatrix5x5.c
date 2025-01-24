@@ -2,6 +2,7 @@
 #include "pico/stdlib.h"
 #include "libs/teclado_matricial/teclado_matricial.h"
 #include "tecla_d/animacao.h"
+#include "tecla_jogo_velha/tecla_jogo_velha.h"
 
 #define OUT_PIN 7
 
@@ -47,15 +48,20 @@ int main()
     while (true) {
         char tecla = detect_button(); // Armazena a tecla detectada
         printf("Tecla pressionada: %c\n", tecla);
-
-        if (tecla == '4') {
-            main_animacao(false, pio, sm); // Aciona o buzzer
+        switch (tecla) {
+            case '4':
+                main_animacao(false, pio, sm);
+                break;
+            case 'D':
+                main_animacao(false, pio, sm);
+                break;
+            case '5':
+                gera_animacao(tecla, pio, sm);
+                break;
+            case '#':
+                gera_animacao(tecla, pio, sm);
+                break;
         }
-        else if (tecla == 'D') 
-        {
-            main_animacao(true, pio, sm);
-        }
-
         sleep_ms(100); // Delay para evitar múltiplas leituras rápidas
     }
 }
