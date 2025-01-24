@@ -41,7 +41,8 @@ double animacoes[5][NUM_LEDS] = {
      0.0, 1.0, 0.0, 1.0, 0.0, 
      0.0, 0.0, 1.0, 0.0, 0.0,
      0.0, 1.0, 0.0, 1.0, 0.0,
-     1.0, 0.0, 0.0, 0.0, 1.0}};
+     1.0, 0.0, 0.0, 0.0, 1.0}
+};
 
 // Inicializa vetor para apagar acender todos os leds com nível de intensidade de 20% da luminosidade máxima
 double animacao_20[NUM_LEDS] = {0.2, 0.2, 0.2, 0.2, 0.2,
@@ -51,7 +52,7 @@ double animacao_20[NUM_LEDS] = {0.2, 0.2, 0.2, 0.2, 0.2,
                                 0.2, 0.2, 0.2, 0.2, 0.2};
 
 // Função que define a intensidade de cada cor de cada led
-uint32_t matrix_rgb(double r, double g, double b) {
+uint32_t matrix_rgb2(double r, double g, double b) {
     unsigned char R, G, B;
     R = r * 255;
     G = g * 255;
@@ -63,10 +64,10 @@ uint32_t matrix_rgb(double r, double g, double b) {
 void animacao_pio(double *animacao, uint32_t iRgb_led, PIO pio, uint sm, double r, double g, double b) {
     for (int16_t i = 0; i < NUM_LEDS; i++) {
         if (i%2 == 0) {
-            iRgb_led = matrix_rgb(r = 0.0, g = 0.0, animacao[24-i]);
+            iRgb_led = matrix_rgb2(r = 0.0, g = 0.0, animacao[24-i]);
         }
         else {
-            iRgb_led = matrix_rgb(animacao[16-i], g = 0.0, b = 0.0);
+            iRgb_led = matrix_rgb2(animacao[16-i], g = 0.0, b = 0.0);
         }
         pio_sm_put_blocking(pio, sm, iRgb_led);
     }

@@ -53,7 +53,7 @@ int main()
                 main_animacao(false, pio, sm);
                 break;
             case 'D':
-                main_animacao(false, pio, sm);
+                main_animacao(true, pio, sm);
                 break;
             case '5':
                 gera_animacao(tecla, pio, sm);
