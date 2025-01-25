@@ -4,9 +4,9 @@ if(WIN32)
 else()
     set(USERHOME $ENV{HOME})
 endif()
-set(sdkVersion 2.1.0)
-set(toolchainVersion 13_3_Rel1)
-set(picotoolVersion 2.1.0)
+set(sdkVersion 2.0.0)
+set(toolchainVersion 13_2_Rel1)
+set(picotoolVersion 2.0.0)
 set(picoVscode ${USERHOME}/.pico-sdk/cmake/pico-vscode.cmake)
 if (EXISTS ${picoVscode})
     include(${picoVscode})
@@ -25,16 +25,16 @@ pico_sdk_init()
 add_executable(LedMatrix5x5
     LedMatrix5x5.c
     libs/teclado_matricial/teclado_matricial.c
-    tecla_d/animacao.c
-    tecla_jogo_velha/tecla_jogo_velha.c
+    libs/tecla_d/animacao.c
+    libs/tecla_jogo_velha/tecla_jogo_velha.c
 )
 
 # Adiciona diretórios de inclusão
 include_directories(
     ${CMAKE_CURRENT_LIST_DIR}
     ${CMAKE_CURRENT_LIST_DIR}/libs/teclado_matricial
-    ${CMAKE_CURRENT_LIST_DIR}/tecla_d
-    ${CMAKE_CURRENT_LIST_DIR}/tecla_jogo_velha
+    ${CMAKE_CURRENT_LIST_DIR}/libs/tecla_d
+    ${CMAKE_CURRENT_LIST_DIR}/libs/tecla_jogo_velha
 )
 
 # Adiciona o arquivo PIO

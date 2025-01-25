@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "libs/teclado_matricial/teclado_matricial.h"
-#include "tecla_d/animacao.h"
-#include "tecla_jogo_velha/tecla_jogo_velha.h"
+#include "libs/tecla_d/animacao.h"
+#include "libs/tecla_jogo_velha/tecla_jogo_velha.h"
 
 #define OUT_PIN 7
 
