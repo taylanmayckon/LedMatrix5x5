@@ -4,97 +4,22 @@
 #include "pico/bootrom.h"
 #include "hardware/clocks.h"
 #include "matriz-led.pio.h"
-#include "libs\teclado_matricial\teclado_matricial.h"
+#include "animacao-2.h"
+#include "libs/teclado_matricial/teclado_matricial.h"
 
-// número de LEDs
-#define NUM_PIXELS 25
-// pino de saída
-#define OUT_PIN 7
-
-double frame1[25] = {0.0, 0.0, 0.0, 0.0, 0.0,
-                     0.0, 0.0, 0.0, 0.0, 0.0,
-                     0.0, 0.0, 0.0, 0.0, 0.0,
-                     0.0, 0.0, 0.0, 0.0, 0.0,
-                     0.0, 0.0, 0.1, 0.0, 0.0};
-
-double frame2[25] = {0.0, 0.0, 0.0, 0.0, 0.0,
-                     0.0, 0.0, 0.0, 0.0, 0.0,
-                     0.0, 0.0, 0.0, 0.0, 0.0,
-                     0.0, 0.1, 0.0, 0.1, 0.0,
-                     0.0, 0.0, 0.1, 0.0, 0.0};
-
-double frame3[25] = {0.0, 0.0, 0.0, 0.0, 0.0,
-                     0.0, 0.0, 0.0, 0.0, 0.0,
-                     0.1, 0.0, 0.0, 0.0, 0.1,
-                     0.0, 0.1, 0.0, 0.1, 0.0,
-                     0.0, 0.0, 0.1, 0.0, 0.0};
-
-double frame4[25] = {0.0, 0.0, 0.0, 0.0, 0.0,
-                     0.1, 0.0, 0.1, 0.0, 0.1,
-                     0.1, 0.0, 0.0, 0.0, 0.1,
-                     0.0, 0.1, 0.0, 0.1, 0.0,
-                     0.0, 0.0, 0.1, 0.0, 0.0};
-
-double frame5[25] = {0.0, 0.1, 0.0, 0.1, 0.0,
-                     0.1, 0.0, 0.1, 0.0, 0.1,
-                     0.1, 0.0, 0.0, 0.0, 0.1,
-                     0.0, 0.1, 0.0, 0.1, 0.0,
-                     0.0, 0.0, 0.1, 0.0, 0.0};
-
-double off[25] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
-
-uint32_t matrix_rgb(double b, double r, double g)
-{
-    unsigned char R, G, B;
-    R = r * 255;
-    G = g * 255;
-    B = b * 255;
-    return (G << 24) | (R << 16) | (B << 8);
-}
-
-// rotina para acionar a matrix de leds - ws2812b
-void desenho_pio(double *desenho, uint32_t valor_led, PIO pio, uint sm, double r, double g, double b)
-{
-
-    for (int16_t i = 0; i < NUM_PIXELS; i++)
-    {
-        valor_led = matrix_rgb(b = 0.0, desenho[24 - i], g = 0.0);
-        pio_sm_put_blocking(pio, sm, valor_led);
-    }
-}
-
-int main()
-{
+int main() {
     stdio_init_all();
 
     PIO pio = pio0;
-    double r = 0.0, b = 0.0, g = 0.0;
-    uint32_t valor_led;
+    set_sys_clock_khz(128000, false); // Define clock para 128 MHz
 
-    // coloca a frequência de clock para 128 MHz, facilitando a divisão pelo clock
-    set_sys_clock_khz(128000, false);
-
-    // configurações da PIO
     uint offset = pio_add_program(pio, &pio_matrix_program);
     uint sm = pio_claim_unused_sm(pio, true);
     pio_matrix_program_init(pio, sm, offset, OUT_PIN);
 
-    while (true)
-    {
-        if (detect_button() == '1')
-        {
-            desenho_pio(frame1, valor_led, pio, sm, r, g, b);
-            sleep_ms(500);
-            desenho_pio(frame2, valor_led, pio, sm, r, g, b);
-            sleep_ms(500);
-            desenho_pio(frame3, valor_led, pio, sm, r, g, b);
-            sleep_ms(500);
-            desenho_pio(frame4, valor_led, pio, sm, r, g, b);
-            sleep_ms(500);
-            desenho_pio(frame5, valor_led, pio, sm, r, g, b);
-            sleep_ms(500);
-            desenho_pio(off, valor_led, pio, sm, r, g, b);
-            sleep_ms(500);
+    while (true) {
+        if (detect_button() == '2') {
+            executar_animacao(pio, sm);
         }
     }
 }
