@@ -23,52 +23,52 @@
 
 //vetor para criar imagem na matriz de led - 1
 double desenho1[25] =   {0.0, 0.0, 0.0, 0.0, 0.0,
-                        0.0, 0.3, 0.0, 0.3, 0.0, 
+                        0.0, 0.0, 0.0, 0.0, 0.0, 
                         0.0, 0.0, 0.0, 0.0, 0.0,
-                        0.3, 0.0, 0.0, 0.0, 0.3,
-                        0.0, 0.3, 0.3, 0.3, 0.0};
-
-double desenho2[25] =   {0.0, 0.3, 0.3, 0.3, 0.0,
-                        0.3, 0.0, 0.0, 0.0, 0.3, 
                         0.0, 0.0, 0.0, 0.0, 0.0,
-                        0.0, 0.3, 0.0, 0.3, 0.0,
-                        0.0, 0.0, 0.0, 0.0, 0.0};
+                        1.0, 0.0, 0.0, 0.0, 1.0};
 
-double desenho3[25] =   {1.0, 1.0, 1.0, 1.0, 1.0,
-                        1.0, 0.0, 0.0, 0.0, 1.0, 
-                        1.0, 0.0, 1.0, 0.0, 1.0,
-                        1.0, 0.0, 0.0, 0.0, 1.0,
-                        1.0, 1.0, 1.0, 1.0, 1.0};
+double desenho2[25] =   {0.0, 0.0, 0.0, 0.0, 0.0,
+                        0.0, 0.0, 0.0, 0.0, 0.0, 
+                        0.0, 0.0, 0.0, 0.0, 0.0,
+                        0.0, 1.0, 0.0, 1.0, 0.0,
+                        1.0, 0.0, 0.0, 0.0, 1.0};
+
+double desenho3[25] =   {0.0, 0.0, 0.0, 0.0, 0.0,
+                        0.0, 0.0, 0.0, 0.0, 0.0, 
+                        0.0, 0.0, 0.0, 0.0, 0.0,
+                        0.0, 1.0, 0.0, 1.0, 0.0,
+                        1.0, 0.0, 0.0, 0.0, 1.0};
 
 double desenho4[25] =   {0.0, 0.0, 0.0, 0.0, 0.0,
-                        0.0, 4.0, 0.0, 4.0, 0.0, 
-                        0.0, 0.0, 0.0, 0.0, 0.0,
-                        0.4, 0.4, 0.4, 0.4, 0.4,
-                        0.0, 0.0, 0.0, 0.0, 0.0};
+                        0.0, 0.0, 0.0, 0.0, 0.0, 
+                        0.0, 0.0, 1.0, 0.0, 0.0,
+                        0.0, 1.0, 0.0, 1.0, 0.0,
+                        1.0, 0.0, 0.0, 0.0, 1.0};
 
 double desenho5[25] =   {0.0, 0.0, 0.0, 0.0, 0.0,
-                        0.0, 0.5, 0.0, 0.0, 0.0, 
-                        0.0, 0.0, 0.0, 0.0, 0.0,
-                        0.5, 0.0, 0.0, 0.0, 0.5,
-                        0.0, 0.5, 0.5, 0.5, 0.0};
+                        0.0, 1.0, 0.0, 1.0, 0.0, 
+                        0.0, 0.0, 1.0, 0.0, 0.0,
+                        0.0, 1.0, 0.0, 1.0, 0.0,
+                        1.0, 0.0, 0.0, 0.0, 1.0};
 
-double desenho6[25] =   {0.0, 0.0, 0.0, 0.0, 0.0,
-                        0.0, 0.5, 0.0, 0.5, 0.0, 
-                        0.0, 0.0, 0.0, 0.0, 0.0,
-                        0.5, 0.0, 0.0, 0.0, 0.5,
-                        0.0, 0.5, 0.5, 0.5, 0.0};
+double desenho6[25] =   {1.0, 0.0, 0.0, 0.0, 1.0,
+                        0.0, 1.0, 0.0, 1.0, 0.0, 
+                        0.0, 0.0, 1.0, 0.0, 0.0,
+                        0.0, 1.0, 0.0, 1.0, 0.0,
+                        1.0, 0.0, 0.0, 0.0, 1.0};
 
-double desenho7[25] =   {0.5, 0.5, 0.5, 0.5, 0.5,
-                        0.5, 0.5, 0.0, 0.0, 0.5, 
-                        0.5, 0.0, 0.5, 0.0, 0.5,
-                        0.5, 0.0, 0.0, 0.5, 0.5,
-                        0.5, 0.5, 0.5, 0.5, 0.5};
-
-double desenho8[25] =   {0.0, 0.0, 0.0, 0.0, 0.0,
+double desenho7[25] =   {0.0, 0.0, 0.0, 0.0, 0.0,
                         0.0, 0.0, 0.0, 0.0, 0.0, 
                         0.0, 0.0, 0.0, 0.0, 0.0,
                         0.0, 0.0, 0.0, 0.0, 0.0,
                         0.0, 0.0, 0.0, 0.0, 0.0};
+
+double desenho8[25] =   {0.5, 0.5, 0.5, 0.5, 0.5,
+                        0.5, 0.5, 0.5, 0.5, 0.5, 
+                        0.5, 0.5, 0.5, 0.5, 0.5,
+                        0.5, 0.5, 0.5, 0.5, 0.5,
+                        0.5, 0.5, 0.5, 0.5, 0.5};
 
 //imprimir valor binário
 // void imprimir_binario(int num) {
@@ -122,7 +122,7 @@ void desenho_pio(double *desenho, uint32_t valor_led, PIO pio, uint sm, double r
 }
 
 //função principal
-void main_animacao(bool detect_button(), PIO pio, uint sm)
+void main_animacao(bool tecla_d, PIO pio, uint sm)
 {
     // PIO pio = pio0; 
     // bool ok;
@@ -144,33 +144,39 @@ void main_animacao(bool detect_button(), PIO pio, uint sm)
     // uint sm = pio_claim_unused_sm(pio, true);
     // pio_matrix_program_init(pio, sm, offset, OUT_PIN);
 
-    while (true)
+    if (tecla_d==true) 
     {
-        // Detecta a tecla pressionada no teclado matricial
-        char key = detect_button();
-
-        if (key == '0') // Se a tecla '0' for pressionada, exibe uma sequência de frames
-        {
-            desenho_pio(frame1, valor_led, pio, sm, r, g, b);
-            sleep_ms(1000);
-            desenho_pio(frame2, valor_led, pio, sm, r, g, b);
-            sleep_ms(1000);
-            desenho_pio(frame3, valor_led, pio, sm, r, g, b);
-            sleep_ms(1000);
-            desenho_pio(frame4, valor_led, pio, sm, r, g, b);
-            sleep_ms(1000);
-            desenho_pio(frame5, valor_led, pio, sm, r, g, b);
-            sleep_ms(1000);
-            desenho_pio(off, valor_led, pio, sm, r, g, b);
-            sleep_ms(3000);
+        desenho_pio(desenho8, valor_led, pio, sm, r, g, b);
+    }
+    else
+    {
+    for (int16_t i = 0; i < 7; i++) {
+        switch (i) {
+            case 0:
+                desenho_pio(desenho1, valor_led, pio, sm, r, g, b);
+                break;
+            case 1:
+                desenho_pio(desenho2, valor_led, pio, sm, r, g, b);
+                break;
+            case 2:
+                desenho_pio(desenho3, valor_led, pio, sm, r, g, b);
+                break;
+            case 3:
+                desenho_pio(desenho4, valor_led, pio, sm, r, g, b);
+                break;
+            case 4:
+                desenho_pio(desenho5, valor_led, pio, sm, r, g, b);
+                break;
+            case 5:
+                desenho_pio(desenho6, valor_led, pio, sm, r, g, b);
+                break;
+            default:
+                desenho_pio(desenho7, valor_led, pio, sm, r, g, b);
+                break;
         }
-        if (key == 'A') // Se a tecla 'A' for pressionada, desliga todos os LEDs
-        {
-            desenho_pio(desenho8, valor_led, pio, sm, r, g, b);
-            sleep_ms(500); // Pequeno atraso para garantir o desligamento
-            }
-
 
         sleep_ms(500);
-    }  
+    }
+    }
+    
 }
