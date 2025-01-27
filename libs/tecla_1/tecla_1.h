@@ -10,10 +10,13 @@ typedef struct {
 
 typedef RGB_defs RGB_cod;
 typedef RGB_defs Matriz_leds_config[5][5]; 
+typedef RGB_defs RGB_backups[5];
 
 uint32_t gera_binario_rgb(double red, double green, double blue);
 
 void imprime_desenho(Matriz_leds_config configuracao, PIO pio, uint sm);
+
+void rodar_todos_frames(PIO pio, uint sm);
 
 void desenho_tecla1(PIO pio, uint sm);
 
