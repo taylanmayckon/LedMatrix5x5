@@ -3,6 +3,7 @@
 #include "libs/teclado_matricial/teclado_matricial.h"
 #include "libs/tecla_d/animacao.h"
 #include "libs/tecla_jogo_velha/tecla_jogo_velha.h"
+#include "libs/tecla_1/tecla_1.h"
 
 #define OUT_PIN 7
 
@@ -49,6 +50,9 @@ int main()
         char tecla = detect_button(); // Armazena a tecla detectada
         printf("Tecla pressionada: %c\n", tecla);
         switch (tecla) {
+            case '1':
+                desenho_tecla1(pio, sm);
+                break;
             case '4':
                 main_animacao(false, pio, sm);
                 break;
