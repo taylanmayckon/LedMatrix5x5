@@ -6,17 +6,14 @@
 #include "teclado_matricial.h"  // Incluindo a biblioteca do teclado (ajuste conforme necessário)
 
 // Definições dos desenhos com animações (matrizes 5x5 com valores 0.0 para os LEDs apagados)
-extern double desenho1[25];
-extern double desenho2[25];
-extern double desenho3[25];
-extern double desenho4[25];
-extern double desenho5[25];
-extern double desenho6[25];
-extern double desenho7[25];
-extern double desenho8[25];
-
-// Função para detectar a tecla pressionada
-char detect_button(void);
+extern double desenho1_A[25];
+extern double desenho2_A[25];
+extern double desenho3_A[25];
+extern double desenho4_A[25];
+extern double desenho5_A[25];
+extern double desenho6_A[25];
+extern double desenho7_A[25];
+extern double desenho8_A[25];
 
 // Função para acionar os LEDs
 void led_matrix_draw_pio(double *desenho, uint32_t valor_led, PIO pio, uint sm, double r, double g, double b);

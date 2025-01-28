@@ -4,6 +4,7 @@
 #include "libs/tecla_d/animacao.h"
 #include "libs/tecla_jogo_velha/tecla_jogo_velha.h"
 #include "libs/tecla_1/tecla_1.h"
+#include "libs/tecla_A/led_animation.h"
 
 #define OUT_PIN 7
 
@@ -50,17 +51,23 @@ int main()
         char tecla = detect_button(); // Armazena a tecla detectada
         printf("Tecla pressionada: %c\n", tecla);
         switch (tecla) {
+            case '0':
+                led_matrix_main_animation(tecla, pio, sm);
+                break;
             case '1':
                 desenho_tecla1(pio, sm);
                 break;
             case '4':
                 main_animacao(false, pio, sm);
                 break;
-            case 'D':
-                main_animacao(true, pio, sm);
-                break;
             case '5':
                 gera_animacao(tecla, pio, sm);
+                break;
+            case 'A':
+                led_matrix_main_animation(tecla, pio, sm);
+                break;
+            case 'D':
+                main_animacao(true, pio, sm);
                 break;
             case '#':
                 gera_animacao(tecla, pio, sm);

@@ -28,6 +28,7 @@ add_executable(LedMatrix5x5
     libs/tecla_d/animacao.c
     libs/tecla_jogo_velha/tecla_jogo_velha.c
     libs/tecla_1/tecla_1.c
+    libs/tecla_A/led_animation.c
 )
 
 # Adiciona diretórios de inclusão
@@ -37,6 +38,7 @@ include_directories(
     ${CMAKE_CURRENT_LIST_DIR}/libs/tecla_d
     ${CMAKE_CURRENT_LIST_DIR}/libs/tecla_jogo_velha
     ${CMAKE_CURRENT_LIST_DIR}/libs/tecla_1
+    ${CMAKE_CURRENT_LIST_DIR}/libs/tecla_A
 )
 
 # Adiciona o arquivo PIO
