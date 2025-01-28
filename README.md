@@ -5,7 +5,7 @@ O programa produzido executa as seguintes operações com base na entrada:
 - 0: Sorriso (Greique)
 - 1: Arco-íris deslizante (Taylan)
 - 2: Coração se formando (Matheus)
-- 3: (Sophia)
+- 3: Soletra SOPHIA (Sophia)
 - 4: Tecla X se formando (Pedro)
 - 5: Soletra JESUS (Danilo)
 - A: Apagar LEDS
