@@ -2,8 +2,8 @@
 #include "teclado_matricial.h"
 
 // GPIO utilizada para o teclado matricial
-int pins_matrix_r[4] = {8, 7, 6, 5};  // Em ordem: R1, R2, R3, R4
-int pins_matrix_c[4] = {4, 3, 2, 28}; // Em ordem: C1, C2, C3, C4
+int pins_matrix_r[4] = {28, 27, 26, 22};  // Em ordem: R1, R2, R3, R4
+int pins_matrix_c[4] = {21, 20, 19, 18}; // Em ordem: C1, C2, C3, C4
 
 // Mapeamento do teclado
 char KEY_MAP[4][4] = {
