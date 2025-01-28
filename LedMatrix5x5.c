@@ -5,6 +5,7 @@
 #include "libs/tecla_jogo_velha/tecla_jogo_velha.h"
 #include "libs/tecla_1/tecla_1.h"
 #include "libs/tecla_A/led_animation.h"
+#include "libs/animacao-2/animacao-2.h"
 
 #define OUT_PIN 7
 
@@ -56,6 +57,9 @@ int main()
                 break;
             case '1':
                 desenho_tecla1(pio, sm);
+                break;
+            case '2':
+                executar_animacao(pio, sm);
                 break;
             case '4':
                 main_animacao(false, pio, sm);

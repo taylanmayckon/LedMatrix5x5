@@ -3,7 +3,6 @@
 
 #include "pico/stdlib.h"
 #include "hardware/pio.h"
-#include "matriz-led.pio.h"
 
 // Definições
 #define NUM_PIXELS 25
