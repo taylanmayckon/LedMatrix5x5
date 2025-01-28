@@ -3,7 +3,6 @@
 
 #include "pico/stdlib.h"
 #include "hardware/pio.h"
-#include "matriz-led.pio.h"
 
 #define NUM_PIXELS 25
 #define OUT_PIN 7

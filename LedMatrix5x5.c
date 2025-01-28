@@ -6,6 +6,7 @@
 #include "libs/tecla_1/tecla_1.h"
 #include "libs/tecla_A/led_animation.h"
 #include "libs/animacao-2/animacao-2.h"
+#include "libs/tecla-b/tecla-b.h"
 
 #define OUT_PIN 7
 
@@ -69,6 +70,9 @@ int main()
                 break;
             case 'A':
                 led_matrix_main_animation(tecla, pio, sm);
+                break;
+            case 'B':
+                ligar_leds_verdes(pio, sm);
                 break;
             case 'D':
                 main_animacao(true, pio, sm);
