@@ -53,8 +53,9 @@ pico_generate_pio_header(LedMatrix5x5 ${CMAKE_CURRENT_LIST_DIR}/matriz-led.pio)
 target_link_libraries(LedMatrix5x5
         pico_stdlib
         hardware_pio
-	    hardware_adc
+	       hardware_adc
         pico_bootrom
+        hardware_clocks
         )
 
 # Add the standard include files to the build
