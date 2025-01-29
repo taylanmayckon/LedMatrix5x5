@@ -16,13 +16,15 @@ static const RGB_cod_3c cor1 = {255.0/255.0, 0.0, 0.0};
 
 static const RGB_cod_3c cor0 = {0, 0, 0};
 
+static const RGB_cod_3c cor1_80 = {204.0/255.0, 0.0, 0.0};
+
 // Frames de animação
 Matriz_leds_config_3c frame_red = {
-    {cor1, cor1, cor1, cor1, cor1}, // Linha 0
-    {cor1, cor1, cor1, cor1, cor1}, // Linha 1
-    {cor1, cor1, cor1, cor1, cor1}, // Linha 2
-    {cor1, cor1, cor1, cor1, cor1}, // Linha 3
-    {cor1, cor1, cor1, cor1, cor1}, // Linha 4
+    {cor1_80, cor1_80, cor1_80, cor1_80, cor1_80}, // Linha 0
+    {cor1_80, cor1_80, cor1_80, cor1_80, cor1_80}, // Linha 1
+    {cor1_80, cor1_80, cor1_80, cor1_80, cor1_80}, // Linha 2
+    {cor1_80, cor1_80, cor1_80, cor1_80, cor1_80}, // Linha 3
+    {cor1_80, cor1_80, cor1_80, cor1_80, cor1_80}, // Linha 4
 };
 
 
