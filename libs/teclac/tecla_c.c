@@ -2,80 +2,90 @@
 #include <stdlib.h>
 #include "pico/stdlib.h"
 #include "hardware/pio.h"
-#include "teclac.h"
+#include "hardware/clocks.h"
+#include "tecla_3c.h"
 
-static const RGB_cod cor_vermelha = {1.0, 0.0, 0.0}; // Vermelho
-static const RGB_cod cor0 = {0.0, 0.0, 0.0}; // Preto
+// Arquivo .pio para controle da matriz
+#include "pio_matrix.pio.h"
 
-uint32_t gera_binario_rgb_c(double red, double green, double blue);
+// Pino que realizará a comunicação do microcontrolador com a matriz
+#define OUT_PIN 7
 
-// Frames 
-Matriz_leds_config frame0_c = {
-    {cor0, cor0, cor0, cor0, cor0},
-    {cor0, cor0, cor0, cor0, cor0},
-    {cor0, cor0, cor0, cor0, cor0},
-    {cor0, cor0, cor0, cor0, cor0},
-    {cor0, cor0, cor0, cor0, cor0},
+// Definindo os vetores das cores
+static const RGB_cod_3c cor1 = {255.0/255.0, 0.0, 0.0};
+
+static const RGB_cod_3c cor0 = {0, 0, 0};
+
+// Frames de animação
+Matriz_leds_config_3c frame_red = {
+    {cor1, cor1, cor1, cor1, cor1}, // Linha 0
+    {cor1, cor1, cor1, cor1, cor1}, // Linha 1
+    {cor1, cor1, cor1, cor1, cor1}, // Linha 2
+    {cor1, cor1, cor1, cor1, cor1}, // Linha 3
+    {cor1, cor1, cor1, cor1, cor1}, // Linha 4
 };
 
-Matriz_leds_config frame1_c = {
-    {cor_vermelha, cor0, cor0, cor0, cor0},
-    {cor0, cor_vermelha, cor0, cor0, cor0},
-    {cor0, cor0, cor_vermelha, cor0, cor0},
-    {cor0, cor0, cor0, cor_vermelha, cor0},
-    {cor0, cor0, cor0, cor0, cor_vermelha},
+
+Matriz_leds_config_3c frame1_3c = {
+//Cols    0     1      2     3    4
+        {cor1, cor1, cor1, cor1, cor1}, // Linha 0
+        {cor1, cor0, cor0, cor0, cor0}, // Linha 1
+        {cor1, cor1, cor1, cor1, cor1}, // Linha 2
+        {cor0, cor0, cor0, cor0, cor1}, // Linha 3
+        {cor1, cor1, cor1, cor1, cor1}, // Linha 4
 };
 
-// Adicione mais frames conforme necessário...
-Matriz_leds_config frame2_c = {
-    {cor0, cor_vermelha, cor0, cor0, cor0},
-    {cor_vermelha, cor0, cor0, cor0, cor0},
-    {cor0, cor0, cor0, cor_vermelha, cor0},
-    {cor0, cor0, cor0, cor0, cor0},
-    {cor0, cor0, cor0, cor0, cor0},
+Matriz_leds_config_3c frame2_3c = {
+    {cor1, cor1, cor1, cor1, cor1}, // Linha 0
+    {cor1, cor0, cor0, cor0, cor1}, // Linha 1
+    {cor1, cor0, cor0, cor0, cor1}, // Linha 2
+    {cor1, cor0, cor0, cor0, cor1}, // Linha 3
+    {cor1, cor1, cor1, cor1, cor1}, // Linha 4
 };
 
-Matriz_leds_config frame3_c = {
-    {cor0, cor0, cor0, cor0, cor_vermelha},
-    {cor0, cor0, cor0, cor_vermelha, cor0},
-    {cor0, cor0, cor_vermelha, cor0, cor0},
-    {cor0, cor_vermelha, cor0, cor0, cor0},
-    {cor_vermelha, cor0, cor0, cor0, cor0},
+Matriz_leds_config_3c frame3_3c = {
+    {cor1, cor1, cor1, cor1, cor0}, // Linha 0
+    {cor1, cor0, cor0, cor1, cor0}, // Linha 1
+    {cor1, cor1, cor1, cor1, cor0}, // Linha 2
+    {cor1, cor0, cor0, cor0, cor0}, // Linha 3
+    {cor1, cor0, cor0, cor0, cor0}, // Linha 4
 };
 
-Matriz_leds_config frame4_c = {
-    {cor0, cor0, cor0, cor0, cor0},
-    {cor0, cor0, cor0, cor0, cor0},
-    {cor0, cor0, cor0, cor0, cor0},
-    {cor0, cor0, cor0, cor0, cor0},
-    {cor0, cor0, cor0, cor0, cor0},
+Matriz_leds_config_3c frame4_3c = {
+    {cor1, cor0, cor0, cor0, cor1}, // Linha 0
+    {cor1, cor0, cor0, cor0, cor1}, // Linha 1
+    {cor1, cor1, cor1, cor1, cor1}, // Linha 2
+    {cor1, cor0, cor0, cor0, cor1}, // Linha 3
+    {cor1, cor0, cor0, cor0, cor1}, // Linha 4
 };
 
-void imprime_desenho_c(Matriz_leds_config configuracao, PIO pio, uint sm) {
-    for (int contadorLinha = 4; contadorLinha >= 0; contadorLinha--) {
-        if (contadorLinha % 2) {
-            for (int contadorColuna = 0; contadorColuna < 5; contadorColuna++) {
-                uint32_t valor_cor_binario = gera_binario_rgb_c(
-                    configuracao[contadorLinha][contadorColuna].red,
-                    configuracao[contadorLinha][contadorColuna].green,
-                    configuracao[contadorLinha][contadorColuna].blue
-                );
-                pio_sm_put_blocking(pio, sm, valor_cor_binario);
-            }
-        } else {
-            for (int contadorColuna = 4; contadorColuna >= 0; contadorColuna--) {
-                uint32_t valor_cor_binario = gera_binario_rgb_c(
-                    configuracao[contadorLinha][contadorColuna].red,
-                    configuracao[contadorLinha][contadorColuna].green,
-                    configuracao[contadorLinha][contadorColuna].blue
-                );
-                pio_sm_put_blocking(pio, sm, valor_cor_binario);
-            }
-        }
-    }
-}
+Matriz_leds_config_3c frame5_3c = {
+    {cor0, cor1, cor1, cor1, cor0}, // Linha 0
+    {cor0, cor0, cor1, cor0, cor0}, // Linha 1
+    {cor0, cor0, cor1, cor0, cor0}, // Linha 2
+    {cor0, cor0, cor1, cor0, cor0}, // Linha 3
+    {cor0, cor1, cor1, cor1, cor0}, // Linha 4
+};
 
-uint32_t gera_binario_rgb_c(double red, double green, double blue){
+Matriz_leds_config_3c frame6_3c = {
+    {cor1, cor1, cor1, cor1, cor1}, // Linha 0
+    {cor1, cor0, cor0, cor0, cor1}, // Linha 1
+    {cor1, cor0, cor0, cor0, cor1}, // Linha 2
+    {cor1, cor1, cor1, cor1, cor1}, // Linha 3
+    {cor1, cor0, cor0, cor0, cor1}, // Linha 4
+};
+
+Matriz_leds_config_3c frame7_3c = {
+    {cor0, cor0, cor0, cor0, cor0}, // Linha 0
+    {cor0, cor0, cor0, cor0, cor0}, // Linha 1
+    {cor0, cor0, cor0, cor0, cor0}, // Linha 2
+    {cor0, cor0, cor0, cor0, cor0}, // Linha 3
+    {cor0, cor0, cor0, cor0, cor0}, // Linha 4
+};
+
+
+
+uint32_t gera_binario_rgb_3c(double red, double green, double blue){
     unsigned char RED, GREEN, BLUE;
     RED = red * 255.0;
     GREEN = green * 255.0;
@@ -83,18 +93,57 @@ uint32_t gera_binario_rgb_c(double red, double green, double blue){
     return (GREEN << 24) | (RED << 16) | (BLUE << 8);
 }
 
-void rodar_todos_frames_c(PIO pio, uint sm) {
-    int valor_delay = 200; // Delay entre os frames
+void imprime_desenho_3c(Matriz_leds_config_3c configuracao, PIO pio, uint sm){
+    for (int contadorLinha = 4; contadorLinha >= 0; contadorLinha--){
+        if(contadorLinha % 2){
+            for (int contadorColuna = 0; contadorColuna < 5; contadorColuna ++){
+                uint32_t valor_cor_binario = gera_binario_rgb_3c(
+                    configuracao[contadorLinha][contadorColuna].red,
+                    configuracao[contadorLinha][contadorColuna].green,
+                    configuracao[contadorLinha][contadorColuna].blue
+                );
 
-    imprime_desenho_c(frame0_c, pio, sm);
-    sleep_ms(valor_delay);
+                pio_sm_put_blocking(pio, sm, valor_cor_binario);
+            }
+        }else{
+            for (int contadorColuna = 4; contadorColuna >= 0; contadorColuna --){
+                uint32_t valor_cor_binario = gera_binario_rgb_3c(
+                    configuracao[contadorLinha][contadorColuna].red,
+                    configuracao[contadorLinha][contadorColuna].green,
+                    configuracao[contadorLinha][contadorColuna].blue
+                );
 
-    imprime_desenho_c(frame1_c, pio, sm);
-    sleep_ms(valor_delay);
+                pio_sm_put_blocking(pio, sm, valor_cor_binario);
+            }
+        }
+    }
+}
 
-    imprime_desenho_c(frame2_c, pio, sm);
-    sleep_ms(valor_delay);
+void desenho_tecla_3c(bool entrada, PIO pio, uint sm){
+    if(entrada == true){
+        imprime_desenho_3c(frame1_3c, pio, sm);
+        sleep_ms(600);
 
-    imprime_desenho_c(frame3_c, pio, sm);
-    sleep_ms(valor_delay);
+        imprime_desenho_3c(frame2_3c, pio, sm);
+        sleep_ms(600);
+
+        imprime_desenho_3c(frame3_3c, pio, sm);
+        sleep_ms(600);
+
+        imprime_desenho_3c(frame4_3c, pio, sm);
+        sleep_ms(600);
+
+        imprime_desenho_3c(frame5_3c, pio, sm);
+        sleep_ms(600);
+
+        imprime_desenho_3c(frame6_3c, pio, sm);
+        sleep_ms(600);
+
+        imprime_desenho_3c(frame7_3c, pio, sm);
+    }
+
+    // False ele imprime o vermelho
+    else if(entrada == false){
+        imprime_desenho_3c(frame_red, pio, sm);
+    }
 }
