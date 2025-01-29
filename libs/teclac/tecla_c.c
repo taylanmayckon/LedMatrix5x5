@@ -3,7 +3,7 @@
 #include "pico/stdlib.h"
 #include "hardware/pio.h"
 #include "hardware/clocks.h"
-#include "tecla_3c.h"
+#include "teclac.h"
 
 // Arquivo .pio para controle da matriz
 #include "pio_matrix.pio.h"

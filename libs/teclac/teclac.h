@@ -1,5 +1,5 @@
-#ifndef TECLA_3C_H
-#define TECLA_3C_H
+#ifndef TECLAC_H
+#define TECLAC_H
 
 // Criando estrutura struct para controlar a cor dos LEDS
 typedef struct {

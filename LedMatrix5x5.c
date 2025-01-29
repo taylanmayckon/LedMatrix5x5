@@ -7,7 +7,7 @@
 #include "libs/tecla_A/led_animation.h"
 #include "libs/animacao-2/animacao-2.h"
 #include "libs/tecla-b/tecla-b.h"
-#include "libs/tecla_3c/tecla_3c.h"
+#include "libs/teclac/teclac.h"
 
 #define OUT_PIN 7
 
