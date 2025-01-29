@@ -1,20 +1,19 @@
-#ifndef ANIMACAO_C_H
-#define ANIMACAO_C_H
+#ifndef TECLA_3C_H
+#define TECLA_3C_H
 
-#include "pico/stdlib.h"
-#include "hardware/pio.h"
-
+// Criando estrutura struct para controlar a cor dos LEDS
 typedef struct {
     double red;
     double green;
     double blue;
-} RGB_defs;
+}RGB_3c;
 
-typedef RGB_defs RGB_cod;
-typedef RGB_defs Matriz_leds_config[5][5];
+typedef RGB_3c RGB_cod_3c;
+typedef RGB_3c Matriz_leds_config_3c[5][5]; 
 
-void imprime_desenho_c(Matriz_leds_config configuracao, PIO pio, uint sm);
+uint32_t gera_binario_rgb_3c(double red, double green, double blue);
 
-void rodar_todos_frames_c(PIO pio, uint sm);
+void imprime_desenho_3c(Matriz_leds_config_3c configuracao, PIO pio, uint sm);
 
+void desenho_tecla_3c(bool entrada, PIO pio, uint sm);
 #endif
