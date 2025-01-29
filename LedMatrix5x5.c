@@ -7,6 +7,7 @@
 #include "libs/tecla_A/led_animation.h"
 #include "libs/animacao-2/animacao-2.h"
 #include "libs/tecla-b/tecla-b.h"
+#include "libs/tecla_3c/tecla_3c.h"
 
 #define OUT_PIN 7
 
@@ -62,6 +63,9 @@ int main()
             case '2':
                 executar_animacao(pio, sm);
                 break;
+            case '3':
+                desenho_tecla_3c(true, pio, sm);
+                break;
             case '4':
                 main_animacao(false, pio, sm);
                 break;
@@ -73,6 +77,9 @@ int main()
                 break;
             case 'B':
                 ligar_leds_verdes(pio, sm);
+                break;
+            case 'C':
+                desenho_tecla_3c(false, pio, sm);
                 break;
             case 'D':
                 main_animacao(true, pio, sm);
