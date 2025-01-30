@@ -12,6 +12,7 @@ O programa produzido executa as seguintes operações com base na entrada:
 - B: Ligar todos os LEDS azuis com 100% de intensidade
 - C: Ligar todos os LEDS vermelhos com 80% de intensidade
 - D: Ligar todos os LEDS verdes com 50% de intensidade
+- #: Ligar todos os LEDS brancos com 20% de intensidade (Danilo)
 
 ### Link do vídeo 🎥
 **[Drive](https://drive.google.com/drive/folders/1oBRzi2BhDoSvSaHuxMD_nSuOQBc6IG4a?usp=sharing)**
